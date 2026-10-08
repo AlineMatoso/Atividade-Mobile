@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- Cabeçalho -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reserve sua mesa"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Encontre e reserve a sala ideal para o seu dia."
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campo de Busca -->
+    <EditText
+        android:id="@+id/etBuscarSala"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Buscar sala"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escolha uma sala"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Opção: Sala 01 -->
+    <Button
+        android:id="@+id/btnSala1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sala 01 - Escritório aberto\nCapacidad: 8 pessoas | Disponíveis: 5 mesas\nVer lugares"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Opção: Sala 02 -->
+    <Button
+        android:id="@+id/btnSala2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sala 02 - Equipe de projetos\nCapacidad: 6 pessoas | Disponíveis: 3 mesas\nVer lugares"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Opção: Sala 03 -->
+    <Button
+        android:id="@+id/btnSala3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sala 03 - Reuniões\nCapacidad: 4 pessoas | Disponíveis: 2 mesas\nVer lugares" />
+
+</LinearLayout>
