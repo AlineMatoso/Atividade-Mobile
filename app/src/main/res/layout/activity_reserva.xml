@@ -25,7 +25,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Buscar sala"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="16dp" />
+
+    <!-- Botão para Ver Reservas -->
+    <Button
+        android:id="@+id/btnVerReservas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver Salas e Mesas Reservadas"
+        android:layout_marginBottom="16dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -57,5 +65,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sala 03 - Reuniões\nCapacidad: 4 pessoas | Disponíveis: 2 mesas\nVer lugares" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minhas Reservas"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvReservas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
 
 </LinearLayout>

@@ -16,28 +16,60 @@ class NovaReservaActivity : AppCompatActivity() {
         val etLocal = findViewById<EditText>(R.id.etLocal)
         val etDescricao = findViewById<EditText>(R.id.etDescricao)
         val btnSalvar = findViewById<Button>(R.id.btnSalvar)
+        val btnVoltar = findViewById<Button>(R.id.btnVoltar)
+
+        // Verifica se veio uma sala pré-selecionada da tela anterior
+        val salaEscolhida = intent.getStringExtra("sala_escolhida")
+        if (salaEscolhida != null) {
+            etLocal.setText(salaEscolhida)
+            etLocal.isEnabled = false // Desativa para evitar redundância
+        }
+
+        // Verifica se veio um ID na Intent (Modo Edição)
+        val idRecebido = intent.getIntExtra("reserva_id", -1)
+        val emModoEdicao = idRecebido != -1
+
+        if (emModoEdicao) {
+            // Busca a reserva antiga no banco e preenche as caixas de texto
+            val reservaAntiga = BancoHelper(this).buscarPorId(idRecebido)
+            if (reservaAntiga != null) {
+                etNome.setText(reservaAntiga.nome)
+                etData.setText(reservaAntiga.data)
+                etLocal.setText(reservaAntiga.local)
+                etLocal.isEnabled = true // Permite editar se necessário
+                etDescricao.setText(reservaAntiga.descricao)
+                btnSalvar.text = "ATUALIZAR RESERVA"
+            }
+        }
 
         btnSalvar.setOnClickListener {
-            // Cria um objeto Reserva com o que o usuário digitou
             val reserva = Reserva(
+                id = if (emModoEdicao) idRecebido else 0,
                 nome = etNome.text.toString().trim(),
                 data = etData.text.toString().trim(),
                 local = etLocal.text.toString().trim(),
                 descricao = etDescricao.text.toString().trim()
             )
 
-            // Valida se o nome não está vazio
             if (reserva.nome.isEmpty()) {
                 etNome.error = "Informe o seu nome"
                 return@setOnClickListener
             }
 
-            // Chama o BancoHelper para salvar a reserva
             val banco = BancoHelper(this)
-            banco.inserir(reserva)
 
-            // Avisa o usuário e fecha a tela
-            Toast.makeText(this, "Reserva salva com sucesso!", Toast.LENGTH_SHORT).show()
+            if (emModoEdicao) {
+                banco.atualizar(reserva)
+                Toast.makeText(this, "Reserva atualizada!", Toast.LENGTH_SHORT).show()
+            } else {
+                banco.inserir(reserva)
+                Toast.makeText(this, "Reserva salva com sucesso!", Toast.LENGTH_SHORT).show()
+            }
+
+            finish()
+        }
+
+        btnVoltar.setOnClickListener {
             finish()
         }
     }
